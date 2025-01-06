@@ -1,0 +1,43 @@
+<mvc:View xmlns:f="sap.ui.layout.form" controllerName="at.clouddna.jsonmodelexample.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <f:SimpleForm id="detail_simpleform" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1">
+                <f:content>
+                    <Label id="labelFistname" labelFor="inputFirstname" text="First name" />
+                    <Input id="inputFirstname" value="{/firstname}" />
+                    <Label id="labelLastname" labelFor="inputLastname" text="Last name" />
+                    <Input id="inputLastname" value="{/lastname}" />
+                </f:content>
+            </f:SimpleForm>
+            <fb:FilterBar id="filterbar" search=".onSearch" clear=".onClear" showClearOnFB="true" showFilterConfiguration="false" >
+			    <fb:filterGroupItems>
+				    <fb:FilterGroupItem id="fbItemSkillLevel" label="Skill level" name="Skill level" groupName="Group1" visibleInFilterBar="true">
+					    <fb:control>
+                            <Select id="selectSkillLevel" items="{filter>/skillLevels}" selectedKey="{filter>/selectedSkillLevel}" forceSelection="false" resetOnMissingKey="true">
+								<core:Item id="selectItemTemplate" key="{filter>key}" text="{filter>key}"/>
+							</Select>
+                            <!-- V1
+						    <Select id="selectSkillLevel" forceSelection="false" resetOnMissingKey="true">
+								<core:Item id="selectOne" key="1" text="1"/>
+                                <core:Item id="selectTwo" key="2" text="2"/>
+                                <core:Item id="selectThree" key="3" text="3"/>
+							</Select>
+                            -->
+						</fb:control>
+					</fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+            <List id="detail_list" headerText="Hobbies" items="{ path: '/hobbies' }"> <!-- , sorter: [{path:'name',descending: true}], filters: [{path: 'skillLevel', operator: 'EQ', value1: 2}] -->
+                <headerToolbar>
+                    <OverflowToolbar id="hobbiesToolbar" style="Clear">
+                        <Title id="hobbiesTitle" text="Hobbies"/>
+                        <ToolbarSpacer id="toolbarSpacer"/>
+                        <Button id="sortButton" tooltip="Sort" icon="sap-icon://sort" press="openViewSettingsDialog"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <StandardListItem id="detail_listitem" title="{name}" info="Skill level: {skillLevel}" />
+            </List>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog id="viewSettingsDialog" confirm=".onConfirm">
+		<sortItems>
+			<ViewSettingsItem id="sortItemName" text="Name" key="name" selected="true" />
+			<ViewSettingsItem id="sortItemSkillLevel" text="Skill level" key="skillLevel" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>
